@@ -1,22 +1,21 @@
-
   <div class="row">
     <div class="col-md-3">
       <h2>User info</h2>
-       <%#= image_tag current_user.get_profile_image, size:'100x100' %>
-       <% if user.profile_image.attached? %>
-       <%= image_tag user.profile_image, size: "150x150" %>
-       <% else %>
-        <%= image_tag 'no_image', size: "150x150" %>
-       <% end %>
+       <%= image_tag user.get_profile_image(100,100) %>
+       <!-- <%# if user.profile_image.attached? %> -->
+       <!-- <%#= image_tag user.profile_image, size: "150x150" %>-->
+       <!--<%# else %>-->
+       <!-- <%#= image_tag 'no_image', size: "150x150" %>-->
+       <!--<%# end %>-->
       <table class="table">
        <tbody><tr></tr>
         <tr>
-	         <th>name</th>
-	         <th><%= user.name %></th>
+	   　　<th>name</th>
+	       <th><%= user.name %></th>
         </tr>
         <tr>
-	         <th>introduction</th>
-	         <th><%= user.introduction %></th>
+	       <th>introduction</th>
+	       <th><%= user.introduction %></th>
         </tr>
        </tbody></table>
 
@@ -25,3 +24,4 @@
        <i class= "fas fa-user-cog"></i>
        <% end %>
        </div>
+

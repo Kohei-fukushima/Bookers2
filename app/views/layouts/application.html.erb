@@ -22,27 +22,26 @@
         <ul class="navbar-nav ml-auto">
       <% if user_signed_in? %>
        <li>
-        <%= link_to root_path, class: "nav-link text-light" do %>
+        <%= link_to user_path(current_user.id), class: "nav-link text-light" do %>
         <i class="fas fa-home"></i>Home
         <% end %>
        </li>
-       <li>
+        <li>
         <%= link_to users_path, class: "nav-link text-light" do %>
-        <i class="fas fa-users"></i>users
-
+        <i class="fas fa-users"></i>Users
         <% end %>
        </li>
-       <li>
+        <li>
         <%= link_to books_path, class: "nav-link text-light" do %>
         <i class="fas fa-book-open"></i>Books
         <% end %>
        </li>
-       <li>
+        <li>
         <%= link_to destroy_user_session_path,method: :delete, class: "nav-link text-light" do %>
         <i class="fas fa-sign-out-alt"></i>Log out
         <% end %>
        </li>
-      <% else %>
+<% else %>
        <li>
         <%= link_to root_path, class: "nav-link text-light" do %>
         <i class="fas fa-home"></i>Home
@@ -65,7 +64,12 @@
       </li>
       <% end %>
     </header>
-    <%= yield %>
+       <% if flash[:notice] %>
+        <p class="alert alert-success"><%= notice %></p>
+       <% elsif flash[:alert] %>
+        <p class="alert alert-danger"><%= alert %></p>
+       <% end %>
+       <%= yield %>
  <footer>
   <div class="container mt-5">
   	<div class="row">
