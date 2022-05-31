@@ -17,11 +17,14 @@ class BooksController < ApplicationController
     @books = Book.all
     @book = Book.new
     @user = current_user
+    @book_comment = BookComment.new
   end
 
   def show
     @book = Book.find(params[:id])
     @book_new = Book.new
+    @book_comment = BookComment.new
+    #@user = current_user これを追記したがエラー発生
   end
 
   def edit

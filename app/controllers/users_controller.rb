@@ -4,11 +4,16 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @books = @user.books
     @book = Book.new
-
+    @book_comment = BookComment.new
   end
 
   def edit
     @user = User.find(params[:id])
+    if @user == current_user
+     render :edit
+    else
+     redirect_to user_path(current_user.id)
+    end
   end
 
   def update
@@ -16,6 +21,7 @@ class UsersController < ApplicationController
    if @user.update(user_params)
      redirect_to user_path(@user.id), notice: 'You have created profile successfully.'
    else
+    @books = Book.all
      render :edit
    end
   end
