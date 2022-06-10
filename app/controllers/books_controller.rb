@@ -24,7 +24,7 @@ class BooksController < ApplicationController
     @book = Book.find(params[:id])
     @book_new = Book.new
     @book_comment = BookComment.new
-    #@user = current_user これを追記したがエラー発生
+    @review = Review.new
   end
 
   def edit
