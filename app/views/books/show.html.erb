@@ -19,16 +19,7 @@
          <td>
            <%= @book.body %>
          </td>
-         <td>
-           <% if @book.user == current_user %>
-           <%= link_to "Edit",edit_book_path(@book.id), class:"btn btn-sm btn-success" %>
-           <% end %>
-         </td>
-         <td>
-           <% if @book.user == current_user %>
-            <%= link_to "Destroy",book_path(@book.id), method: :delete, class:"btn btn-sm btn-danger" %>
-           <% end %>
-           <% if @book.favorited_by?(current_user) %>
+          <% if @book.favorited_by?(current_user) %>
           <td>
            <%= link_to book_favorites_path(@book), method: :delete do %>
            ❤︎<%= @book.favorites.count %>
@@ -46,20 +37,28 @@
           <td>
            <%= link_to"コメント数:#{ @book.book_comments.count }",book_path(@book) %>
           </td>
+           <% end %>
           <td>
-          <div id="star-rate<%= @review.id%>"></div>
-           <script>
-            $('#star-rate<%= @review.id%>').raty({
-              size      : 36,
-              starOff   : '<%= asset_path('star-off.png') %>',
-              starOn    : '<%= asset_path('star-on.png') %>',
-              half      : false,
-              readOnly: true,
-              score: <%= @review.star %>,
-            });
-          </script>
-         </div>
-          </td>
+            <div id="star-rate<%= @book.id%>"></td>
+             <script>
+              $('#star-rate<%= @book.id %>').empty();
+              $('#star-rate<%= @book.id%>').raty({
+                 size      : 10,
+                 starOff   : '<%= asset_path('star-off.png') %>',
+                 starOn    : '<%= asset_path('star-on.png') %>',
+                 half      : false,
+                 readOnly: true,
+                 score: <%= @book.star %>,
+               });
+             </script>
+         <td>
+           <% if @book.user == current_user %>
+           <%= link_to "Edit",edit_book_path(@book.id), class:"btn btn-sm btn-success" %>
+           <% end %>
+         </td>
+         <td>
+           <% if @book.user == current_user %>
+            <%= link_to "Destroy",book_path(@book.id), method: :delete, class:"btn btn-sm btn-danger" %>
            <% end %>
          </td>
          <td></td>

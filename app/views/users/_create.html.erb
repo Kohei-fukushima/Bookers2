@@ -14,55 +14,24 @@
     <label for="book title">Title</label>
     <%= f.text_field :title, class:"form-control" %>
    </div>
-
     <div class="form_group">
      <label for="book_opinion">Opinion</label>
     <%= f.text_area :body, class:"form-control" %>
     </div>
-  <!--  <div class="form-group" id="star">-->
-  <!--  <%#= f.label :star , class:'col-md-3 col-form-label' %>-->
-  <!--  <%#= f.hidden_field :star, id: :book_star %>-->
-  <!--  </div>-->
-  <!--  <script>-->
-  <!--  $('#star').raty({-->
-  <!--  size     : 36,-->
-  <!--  starOff:  '<%= asset_path('star-off.png') %>',-->
-  <!--  starOn : '<%= asset_path('star-on.png') %>',-->
-
-  <!--  scoreName: 'review[star]',-->
-  <!--  half: false,-->
-  <!--  });-->
-  <!--</script>-->
-  <%= form_with [book, review] do |f| %>
-  <div class="field">
-  <div>
-    <%= f.label :content%>
-    <%= f.text_field :content %>
-  </div>
-
-  <div>
-    <%= f.submit button_value %>
-  </div>
-
-    <div class="form-group row" id="star">
-    <%= f.label :star,'評価 ', class:'col-md-3 col-form-label' %>
-    <%= f.hidden_field :star, id: :review_star %>
-  </div>
-
-  <!-- 評価javascript -->
-  <script>
-  $('#star').raty({
-    size     : 36,
-    starOff:  '<%= asset_path('star-off.png') %>',
-    starOn : '<%= asset_path('star-on.png') %>',
-
-    scoreName: 'comment[star]',
-    half: false,
-  });
-  </script>
-
-<% end %>
-
+    <div class="form-group" id="star">
+      <%= f.label :star,'Rate ', class:'col-md-3 col-form-label' %>
+      <%= f.hidden_field :star, id: :review_star %>
+　　</div>
+    <script>
+     　$('#star').empty();
+       $('#star').raty({
+         size     : 36,
+         starOff:  '<%= asset_path('star-off.png') %>',
+         starOn : '<%= asset_path('star-on.png') %>',
+      　 　　　scoreName: 'book[star]',
+         half: false,
+       });
+    </script>
     <div class="form_group">
     <%= f.submit 'Create Book', class:"btn btn-success" %>
     </div>
